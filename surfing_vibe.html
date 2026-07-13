@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="ko">Surfing Vibe | 파도와 내가 하나 되는 시간</title>
+    <title class="en">Surfing Vibe | Where the Waves and I Become One</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        ocean: {
+                            DEFAULT: '#0077B6',
+                            dark: '#023E8A',
+                            light: '#90E0EF'
+                        },
+                        sand: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#D6CCC2'
+                        },
+                        sunset: {
+                            DEFAULT: '#F77F00',
+                            hover: '#E85D04'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 커스텀 스크롤바 */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #F5EBE0; }
+        ::-webkit-scrollbar-thumb { background: #0077B6; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #023E8A; }
+
+        /* 스크롤 애니메이션 클래스 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 다국어 지원 CSS */
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden bg-sand selection:bg-ocean selection:text-white lang-ko">
+
+    <!-- 언어 변경 버튼 -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="lang-toggle" class="bg-black/20 hover:bg-black/40 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full transition-all duration-300 shadow-lg text-sm font-bold tracking-wider">
+            ENG
+        </button>
+    </div>
+
+    <!-- [1단계] 도입: 히어로 섹션 -->
+    <header class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                 alt="Surfing in the ocean" 
+                 class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-ocean-dark/70 via-ocean/40 to-ocean-dark/80"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 flex flex-col items-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-ocean/30 border border-ocean-light/30 text-ocean-light text-sm font-semibold tracking-wider mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards] backdrop-blur-sm">
+                SURFING VIBE
+            </span>
+            
+            <!-- Hero Text (KO) -->
+            <h1 class="ko text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]">
+                언제 어디서나,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-ocean-light to-white">파도와 내가 하나 되는 시간</span>
+            </h1>
+            <p class="ko text-lg md:text-xl text-gray-200 mb-10 font-light max-w-2xl opacity-0 animate-[fadeInUp_1s_ease-out_0.8s_forwards]">
+                자유로운 바다 위에서 일상의 스트레스를 날려보세요.<br class="hidden md:block"> 파도만이 만들어내는 완벽한 고요함 속으로 당신을 초대합니다.
+            </p>
+
+            <!-- Hero Text (EN) -->
+            <h1 class="en text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.5s_forwards]">
+                Anytime, Anywhere,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-ocean-light to-white">Where the Waves and I Become One</span>
+            </h1>
+            <p class="en text-lg md:text-xl text-gray-200 mb-10 font-light max-w-2xl opacity-0 animate-[fadeInUp_1s_ease-out_0.8s_forwards]">
+                Wash away your daily stress on the open ocean.<br class="hidden md:block"> We invite you into the perfect tranquility created only by the waves.
+            </p>
+
+            <a href="#empathy" class="group flex items-center justify-center w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 transition-all duration-300 opacity-0 animate-[fadeInUp_1s_ease-out_1.1s_forwards]">
+                <svg class="w-6 h-6 text-white group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- [2단계] 공감: 니즈 자극 -->
+    <section id="empathy" class="py-24 px-6 md:px-12 bg-sand text-center">
+        <div class="max-w-4xl mx-auto reveal">
+            <!-- Empathy (KO) -->
+            <div class="ko">
+                <h2 class="text-3xl md:text-5xl font-bold text-ocean-dark mb-6 leading-tight">
+                    복잡한 일상과 스트레스,<br>
+                    온전히 나에게 집중할 <span class="text-sunset underline decoration-sunset/40 decoration-4 underline-offset-4">힐링의 시간</span>이 필요하신가요?
+                </h2>
+                <p class="text-lg text-gray-600 md:text-xl font-medium mt-6">
+                    끊임없이 울리는 알람과 쏟아지는 업무.<br>
+                    육지에서의 무거운 짐을 내려놓고, 이제 바다의 리듬에 몸을 맡겨보세요.
+                </p>
+            </div>
+            
+            <!-- Empathy (EN) -->
+            <div class="en">
+                <h2 class="text-3xl md:text-5xl font-bold text-ocean-dark mb-6 leading-tight">
+                    Exhausted by the daily grind?<br>
+                    Do you need a <span class="text-sunset underline decoration-sunset/40 decoration-4 underline-offset-4">time of healing</span> just for yourself?
+                </h2>
+                <p class="text-lg text-gray-600 md:text-xl font-medium mt-6">
+                    Endless alarms and overwhelming tasks.<br>
+                    Leave your heavy burdens on land and surrender to the rhythm of the ocean.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- [3단계] 매력 어필: 강점 카드 -->
+    <section class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h3 class="text-sm font-bold text-sunset tracking-widest uppercase mb-2">Why Surfing?</h3>
+                <h2 class="ko text-3xl md:text-4xl font-extrabold text-gray-900">서핑이 특별한 4가지 이유</h2>
+                <h2 class="en text-3xl md:text-4xl font-extrabold text-gray-900">4 Reasons Why Surfing is Special</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- 카드 1 -->
+                <div class="bg-sand/30 rounded-3xl p-8 hover:bg-sand/60 hover:-translate-y-2 transition-all duration-300 reveal shadow-sm border border-sand-dark/20">
+                    <div class="w-14 h-14 bg-ocean rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-ocean/30">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                    </div>
+                    <!-- Card 1 (KO) -->
+                    <div class="ko">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">파도만 있다면 나의 놀이터</h3>
+                        <p class="text-gray-600 leading-relaxed">장소나 계절에 구애받지 않습니다. 파도만 있다면 그곳이 어디든 나만의 넓은 놀이터가 됩니다. 끝없이 펼쳐진 바다에서 진정한 자유로움을 느껴보세요.</p>
+                    </div>
+                    <!-- Card 1 (EN) -->
+                    <div class="en">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">My Playground, Anywhere</h3>
+                        <p class="text-gray-600 leading-relaxed">Unbound by time or place. As long as there are waves, it becomes your vast playground. Feel true freedom in the endless ocean.</p>
+                    </div>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="bg-sand/30 rounded-3xl p-8 hover:bg-sand/60 hover:-translate-y-2 transition-all duration-300 reveal shadow-sm border border-sand-dark/20 delay-100">
+                    <div class="w-14 h-14 bg-ocean rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-ocean/30">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <!-- Card 2 (KO) -->
+                    <div class="ko">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">물 위에서 즐기는 동적인 명상</h3>
+                        <p class="text-gray-600 leading-relaxed">보드 위에 올라서는 순간, 복잡한 일상의 고민은 파도 거품과 함께 사라집니다. 오직 다가오는 파도와 내 움직임에만 집중하게 되는 온전한 몰입을 통해 멘탈 웰니스를 경험하세요.</p>
+                    </div>
+                    <!-- Card 2 (EN) -->
+                    <div class="en">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Dynamic Meditation</h3>
+                        <p class="text-gray-600 leading-relaxed">The moment you step on the board, daily worries wash away with the sea foam. Experience mental wellness through complete immersion, focusing only on the approaching waves and your movements.</p>
+                    </div>
+                </div>
+
+                <!-- 카드 3 -->
+                <div class="bg-sand/30 rounded-3xl p-8 hover:bg-sand/60 hover:-translate-y-2 transition-all duration-300 reveal shadow-sm border border-sand-dark/20">
+                    <div class="w-14 h-14 bg-ocean rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-ocean/30">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <!-- Card 3 (KO) -->
+                    <div class="ko">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">자연과 내가 하나 되는 벅찬 순간</h3>
+                        <p class="text-gray-600 leading-relaxed">인공적인 엔진 없이, 거대한 자연의 흐름에 오롯이 내 몸을 맡깁니다. 파도의 속도와 하나가 될 때 느껴지는 자연 앞에서의 겸손함과 압도적인 평화로움을 만끽하세요.</p>
+                    </div>
+                    <!-- Card 3 (EN) -->
+                    <div class="en">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">One with Nature</h3>
+                        <p class="text-gray-600 leading-relaxed">Without artificial engines, you entrust your body entirely to the massive flow of nature. Relish the humility and overwhelming peace as you become one with the speed of the wave.</p>
+                    </div>
+                </div>
+
+                <!-- 카드 4 -->
+                <div class="bg-sand/30 rounded-3xl p-8 hover:bg-sand/60 hover:-translate-y-2 transition-all duration-300 reveal shadow-sm border border-sand-dark/20 delay-100">
+                    <div class="w-14 h-14 bg-ocean rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-ocean/30">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <!-- Card 4 (KO) -->
+                    <div class="ko">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">몸과 마음을 깨우는 전신 운동</h3>
+                        <p class="text-gray-600 leading-relaxed">단순히 즐거운 놀이가 아닙니다. 물살을 가르는 패들링과 순간적인 테이크오프는 코어 근육을 단련하고 심폐 지구력을 기르는 데 탁월한 피지컬 웰니스 스포츠입니다.</p>
+                    </div>
+                    <!-- Card 4 (EN) -->
+                    <div class="en">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Full-Body Wellness</h3>
+                        <p class="text-gray-600 leading-relaxed">It's not just a fun activity. Paddling through the water and explosive take-offs make it an excellent physical wellness sport that strengthens your core and cardiovascular endurance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [4단계] 길라잡이: 초보자 가이드 -->
+    <section class="py-24 px-6 md:px-12 bg-ocean-dark text-white relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-ocean rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-ocean-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16 reveal">
+                <!-- Guide Header (KO) -->
+                <div class="ko">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">처음이라 막막하신가요?</h2>
+                    <p class="text-ocean-light text-lg">초보 서퍼를 위한 알짜배기 파도 가이드를 확인해보세요.</p>
+                </div>
+                <!-- Guide Header (EN) -->
+                <div class="en">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Feeling Lost as a Beginner?</h2>
+                    <p class="text-ocean-light text-lg">Check out our essential wave guide for beginner surfers.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 파도 확인 앱 -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 reveal">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <span class="w-10 h-10 bg-sunset rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </span>
+                        <span class="ko">파도 확인 필수 앱/사이트</span>
+                        <span class="en">Essential Wave Forecast Apps</span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="p-4 bg-black/20 rounded-2xl hover:bg-black/30 transition-colors">
+                            <h4 class="font-bold text-lg text-ocean-light mb-1">WSB FARM</h4>
+                            <p class="ko text-sm text-gray-300">국내 주요 서핑 스팟의 실시간 웹캠과 파도 예보를 가장 직관적으로 볼 수 있는 국민 서핑 앱입니다.</p>
+                            <p class="en text-sm text-gray-300">The most intuitive national surfing app offering real-time webcams and wave forecasts for major spots in Korea.</p>
+                        </li>
+                        <li class="p-4 bg-black/20 rounded-2xl hover:bg-black/30 transition-colors">
+                            <h4 class="font-bold text-lg text-ocean-light mb-1">Windfinder</h4>
+                            <p class="ko text-sm text-gray-300">전 세계의 바람, 파도, 날씨를 디테일하게 제공합니다. 풍향과 차트를 읽는 법을 배우면 매우 유용합니다.</p>
+                            <p class="en text-sm text-gray-300">Provides detailed global wind, wave, and weather data. Highly useful once you learn how to read wind charts.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 수준별 서핑 스팟 -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 reveal delay-100">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <span class="w-10 h-10 bg-sunset rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </span>
+                        <span class="ko">초보자를 위한 추천 스팟</span>
+                        <span class="en">Recommended Spots for Beginners</span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 mt-2 mr-3 bg-ocean-light rounded-full"></div>
+                            <div>
+                                <h4 class="ko font-bold text-lg">양양 죽도 & 인구 해변</h4>
+                                <h4 class="en font-bold text-lg">Yangyang Jukdo & Ingu Beach</h4>
+                                <p class="ko text-sm text-gray-300">명실상부 국내 서핑의 성지. 인프라가 매우 잘 갖춰져 있어 렌탈 및 강습을 받기 가장 좋은 곳입니다.</p>
+                                <p class="en text-sm text-gray-300">The undisputed mecca of surfing in Korea. With excellent infrastructure, it's the best place for rentals and lessons.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 mt-2 mr-3 bg-ocean-light rounded-full"></div>
+                            <div>
+                                <h4 class="ko font-bold text-lg">제주 중문 색달 해변</h4>
+                                <h4 class="en font-bold text-lg">Jeju Jungmun Saekdal Beach</h4>
+                                <p class="ko text-sm text-gray-300">이국적인 풍경과 함께 질 좋은 파도가 들어옵니다. 초보자 구역이 잘 나뉘어 있어 안전하게 즐길 수 있습니다.</p>
+                                <p class="en text-sm text-gray-300">Offers high-quality waves alongside exotic scenery. Beginner zones are well-separated for a safe experience.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 mt-2 mr-3 bg-ocean-light rounded-full"></div>
+                            <div>
+                                <h4 class="ko font-bold text-lg">부산 송정 해변</h4>
+                                <h4 class="en font-bold text-lg">Busan Songjeong Beach</h4>
+                                <p class="ko text-sm text-gray-300">사계절 내내 서핑을 즐기기 좋으며, 수심이 얕고 파도가 부드러워 첫 테이크오프를 연습하기에 제격입니다.</p>
+                                <p class="en text-sm text-gray-300">Great for surfing all year round. The shallow water and gentle waves make it perfect for practicing your first take-off.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [5단계] 행동 유도: CTA 섹션 -->
+    <section class="py-24 px-6 text-center bg-sand">
+        <div class="max-w-3xl mx-auto reveal">
+            <!-- CTA (KO) -->
+            <div class="ko">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-ocean-dark mb-8">이제, 파도에 몸을 실어볼 시간!</h2>
+                <p class="text-lg text-gray-600 mb-10">
+                    수영을 못해도 괜찮습니다. 보드 위에서 균형을 잡으려는 작은 시도만으로도<br class="hidden md:block"> 
+                    당신의 일상에 새로운 활력이 파도처럼 밀려올 것입니다.
+                </p>
+                <a href="#" class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all bg-sunset rounded-full hover:bg-sunset-hover hover:scale-105 shadow-xl shadow-sunset/30 hover:shadow-sunset/50">
+                    초보 서퍼 가이드북 받기
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+            
+            <!-- CTA (EN) -->
+            <div class="en">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-ocean-dark mb-8">Now, It's Time to Ride the Waves!</h2>
+                <p class="text-lg text-gray-600 mb-10">
+                    It's okay if you can't swim. Just the small attempt to balance on the board<br class="hidden md:block"> 
+                    will bring a wave of new vitality into your daily life.
+                </p>
+                <a href="#" class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all bg-sunset rounded-full hover:bg-sunset-hover hover:scale-105 shadow-xl shadow-sunset/30 hover:shadow-sunset/50">
+                    Get Beginner's Guidebook
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-6 text-center text-sm">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-extrabold text-white tracking-wide">SURFING VIBE</span>
+                <p class="ko mt-2">물에서 하는 명상, 서핑의 모든 것</p>
+                <p class="en mt-2">Meditation on water, everything about surfing</p>
+            </div>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="hover:text-white transition-colors">Community</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-800">
+            &copy; 2026 Surfing Vibe. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- 자바스크립트: 스크롤 애니메이션 및 언어 변경 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 스크롤 등장 애니메이션 설정
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
+
+            // 2. 다국어(언어) 토글 스크립트
+            const langToggleBtn = document.getElementById('lang-toggle');
+            const body = document.body;
+            
+            // 타이틀 요소들 (head 안의 title 태그)
+            const koTitle = document.querySelector('title.ko').innerText;
+            const enTitle = document.querySelector('title.en').innerText;
+
+            langToggleBtn.addEventListener('click', () => {
+                if (body.classList.contains('lang-ko')) {
+                    // 영어로 변경
+                    body.classList.remove('lang-ko');
+                    body.classList.add('lang-en');
+                    langToggleBtn.textContent = 'KOR';
+                    document.title = enTitle;
+                } else {
+                    // 한국어로 변경
+                    body.classList.remove('lang-en');
+                    body.classList.add('lang-ko');
+                    langToggleBtn.textContent = 'ENG';
+                    document.title = koTitle;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
